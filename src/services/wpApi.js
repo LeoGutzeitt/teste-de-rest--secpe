@@ -131,7 +131,7 @@ export async function searchContent(searchTerm) {
     fetchFromAPI('pages', { search: searchTerm, per_page: 5, _embed: true }),
   ]);
   
-  return { posts, pages };
+  return { posts, pages }; 
 }
 
 export default {
