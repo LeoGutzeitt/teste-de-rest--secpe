@@ -1,0 +1,392 @@
+/* ==========================================
+   HEADER - Inspirado no SDS Gov PE
+   ========================================== */
+
+/* Variáveis de cores */
+:root {
+  --header-primary: #1a3a5c;
+  --header-secondary: #2d7abf;
+  --header-accent: #0066cc;
+  --header-light: #f5f8fa;
+  --header-white: #ffffff;
+  --header-text: #333333;
+  --header-text-light: #666666;
+  --header-border: #e0e0e0;
+}
+
+/* Reset e base */
+.header {
+  width: 100%;
+  background: var(--header-white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ==========================================
+   BARRA SUPERIOR (Governo)
+   ========================================== */
+.header-top {
+  background: var(--header-primary);
+  color: var(--header-white);
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.header-top-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-top-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-top-text {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.header-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-top-link {
+  color: var(--header-white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.header-top-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ==========================================
+   HEADER PRINCIPAL
+   ========================================== */
+.header-main {
+  background: var(--header-white);
+}
+
+.header-main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Logo */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.header-logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo-icon svg {
+  display: block;
+}
+
+.header-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-secretaria {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--header-primary);
+  line-height: 1.2;
+}
+
+.header-estado {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--header-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Navegação Desktop */
+.header-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav-link {
+  display: block;
+  padding: 0.5rem 0.875rem;
+  color: var(--header-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.header-nav-link:hover {
+  color: var(--header-secondary);
+  background: var(--header-light);
+}
+
+.header-nav-link.active {
+  color: var(--header-secondary);
+  font-weight: 600;
+}
+
+.header-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: var(--header-secondary);
+  border-radius: 2px;
+}
+
+/* Botão de Busca */
+.header-search-btn {
+  background: none;
+  border: 2px solid var(--header-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--header-text);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.header-search-btn:hover {
+  border-color: var(--header-secondary);
+  color: var(--header-secondary);
+  background: var(--header-light);
+}
+
+/* Menu Toggle (Mobile) */
+.header-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.header-menu-toggle-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--header-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.header-menu-toggle.active .header-menu-toggle-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.header-menu-toggle.active .header-menu-toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.header-menu-toggle.active .header-menu-toggle-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ==========================================
+   MENU MOBILE
+   ========================================== */
+.header-mobile-menu {
+  display: none;
+  background: var(--header-white);
+  border-top: 1px solid var(--header-border);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.header-mobile-menu.open {
+  max-height: 400px;
+  padding: 1rem 0;
+}
+
+.header-mobile-nav {
+  padding: 0 1.5rem;
+}
+
+.header-mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.header-mobile-nav-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--header-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.header-mobile-nav-link:hover {
+  background: var(--header-light);
+  color: var(--header-secondary);
+}
+
+.header-mobile-nav-link.active {
+  color: var(--header-secondary);
+  font-weight: 600;
+  border-left-color: var(--header-secondary);
+  background: var(--header-light);
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+@media (max-width: 992px) {
+  .header-nav {
+    display: none;
+  }
+
+  .header-search-btn {
+    display: none;
+  }
+
+  .header-menu-toggle {
+    display: flex;
+  }
+
+  .header-mobile-menu {
+    display: block;
+  }
+
+  .header-top-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .header-top-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-main-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .header-secretaria {
+    font-size: 0.85rem;
+  }
+
+  .header-estado {
+    font-size: 0.65rem;
+  }
+
+  .header-logo-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-top {
+    padding: 0.4rem 0;
+  }
+
+  .header-top-text {
+    font-size: 0.7rem;
+  }
+
+  .header-main-container {
+    gap: 0.75rem;
+  }
+
+  .header-secretaria {
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .header-mobile-menu {
+    transition: none;
+  }
+
+  .header-menu-toggle-line,
+  .header-nav-link,
+  .header-search-btn,
+  .header-top-link {
+    transition: none;
+  }
+}
+
+/* Foco visível para navegação por teclado */
+.header-nav-link:focus,
+.header-search-btn:focus,
+.header-menu-toggle:focus,
+.header-top-link:focus,
+.header-mobile-nav-link:focus {
+  outline: 2px solid var(--header-secondary);
+  outline-offset: 2px;
+}
