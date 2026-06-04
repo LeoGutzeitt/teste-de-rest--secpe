@@ -1,8 +1,96 @@
 import { useState } from "react";
 import "./Header.css";
 
+// Menu items with sub-items
+const menuItems = [
+  {
+    id: "inicio",
+    label: "Início",
+    href: "#inicio",
+    subItems: [],
+  },
+  {
+    id: "sobre",
+    label: "Sobre",
+    href: "#sobre",
+    subItems: [
+      { label: "A Secretaria", href: "#sobre/secretaria" },
+      { label: "Equipe", href: "#sobre/equipe" },
+      { label: "História", href: "#sobre/historia" },
+    ],
+  },
+  {
+    id: "noticias",
+    label: "Notícias",
+    href: "#noticias",
+    subItems: [
+      { label: "Últimas Notícias", href: "#noticias/ultimas" },
+      { label: "Eventos", href: "#noticias/eventos" },
+      { label: "Editais", href: "#noticias/editais" },
+    ],
+  },
+  {
+    id: "servicos",
+    label: "Serviços",
+    href: "#servicos",
+    subItems: [
+      { label: "Agendamentos", href: "#servicos/agendamentos" },
+      { label: "Certidões", href: "#servicos/certidoes" },
+      { label: "Inscrições", href: "#servicos/inscricoes" },
+    ],
+  },
+  {
+    id: "transparencia",
+    label: "Transparência",
+    href: "#transparencia",
+    subItems: [
+      { label: "Dados Abertos", href: "#transparencia/dados" },
+      { label: "Licitações", href: "#transparencia/licitacoes" },
+      { label: "Prestação de Contas", href: "#transparencia/contas" },
+    ],
+  },
+  {
+    id: "contato",
+    label: "Contato",
+    href: "#contato",
+    subItems: [
+      { label: "Fale Conosco", href: "#contato/fale" },
+      { label: "Ouvidoria", href: "#contato/ouvidoria" },
+      { label: "Endereços", href: "#contato/enderecos" },
+    ],
+  },
+];
+
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileOpenItems, setMobileOpenItems] = useState({});
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const toggleDropdown = (itemId) => {
+    setActiveDropdown(activeDropdown === itemId ? null : itemId);
+  };
+
+  const closeDropdown = () => {
+    setActiveDropdown(null);
+  };
+
+  const toggleMobileSubmenu = (itemId) => {
+    setMobileOpenItems(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      window.location.href = `#search?q=${encodeURIComponent(searchTerm)}`;
+      setSearchOpen(false);
+      setSearchTerm('');
+    }
+  };
 
   return (
     <header className="header">
@@ -62,41 +150,58 @@ function Header() {
           {/* Menu Desktop */}
           <nav className="header-nav desktop-nav">
             <ul className="header-nav-list">
-              <li>
-                <a href="#inicio" className="header-nav-link active">
-                  Início
-                </a>
-              </li>
-              <li>
-                <a href="#sobre" className="header-nav-link">
-                  Sobre
-                </a>
-              </li>
-              <li>
-                <a href="#noticias" className="header-nav-link">
-                  Notícias
-                </a>
-              </li>
-              <li>
-                <a href="#servicos" className="header-nav-link">
-                  Serviços
-                </a>
-              </li>
-              <li>
-                <a href="#transparencia" className="header-nav-link">
-                  Transparência
-                </a>
-              </li>
-              <li>
-                <a href="#contato" className="header-nav-link">
-                  Contato
-                </a>
-              </li>
+              {menuItems.map((item) => (
+                <li 
+                  key={item.id} 
+                  className={`header-nav-item ${item.subItems.length > 0 ? 'has-dropdown' : ''}`}
+                >
+                  {item.subItems.length > 0 ? (
+                    <>
+                      <button
+                        className={`header-nav-link ${activeDropdown === item.id ? 'active' : ''}`}
+                        onClick={() => toggleDropdown(item.id)}
+                        aria-expanded={activeDropdown === item.id}
+                        aria-haspopup="true"
+                      >
+                        {item.label}
+                        <svg 
+                          className="dropdown-arrow"
+                          width="12" 
+                          height="12" 
+                          viewBox="0 0 12 12" 
+                          fill="none"
+                        >
+                          <path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      {activeDropdown === item.id && (
+                        <ul className="header-dropdown-menu">
+                          {item.subItems.map((subItem, index) => (
+                            <li key={index}>
+                              <a href={subItem.href} className="header-dropdown-link" onClick={closeDropdown}>
+                                {subItem.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </>
+                  ) : (
+                    <a href={item.href} className="header-nav-link active">
+                      {item.label}
+                    </a>
+                  )}
+                </li>
+              ))}
             </ul>
           </nav>
 
           {/* Botão de Busca */}
-          <button className="header-search-btn" aria-label="Buscar">
+          <button 
+            className="header-search-btn" 
+            aria-label="Buscar"
+            onClick={() => setSearchOpen(true)}
+          >
             <svg
               width="20"
               height="20"
@@ -128,39 +233,79 @@ function Header() {
       <div className={`header-mobile-menu ${menuOpen ? "open" : ""}`}>
         <nav className="header-mobile-nav">
           <ul className="header-mobile-nav-list">
-            <li>
-              <a href="#inicio" className="header-mobile-nav-link active">
-                Início
-              </a>
-            </li>
-            <li>
-              <a href="#sobre" className="header-mobile-nav-link">
-                Sobre
-              </a>
-            </li>
-            <li>
-              <a href="#noticias" className="header-mobile-nav-link">
-                Notícias
-              </a>
-            </li>
-            <li>
-              <a href="#servicos" className="header-mobile-nav-link">
-                Serviços
-              </a>
-            </li>
-            <li>
-              <a href="#transparencia" className="header-mobile-nav-link">
-                Transparência
-              </a>
-            </li>
-            <li>
-              <a href="#contato" className="header-mobile-nav-link">
-                Contato
-              </a>
-            </li>
+            {menuItems.map((item) => (
+              <li key={item.id} className="header-mobile-nav-item">
+                {item.subItems.length > 0 ? (
+                  <>
+                    <div className="header-mobile-nav-item-header">
+                      <a href={item.href} className="header-mobile-nav-link">
+                        {item.label}
+                      </a>
+                      <button
+                        className={`header-mobile-dropdown-toggle ${mobileOpenItems[item.id] ? 'open' : ''}`}
+                        onClick={() => toggleMobileSubmenu(item.id)}
+                        aria-expanded={mobileOpenItems[item.id]}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                    {mobileOpenItems[item.id] && (
+                      <ul className="header-mobile-dropdown-menu">
+                        {item.subItems.map((subItem, index) => (
+                          <li key={index}>
+                            <a href={subItem.href} className="header-mobile-dropdown-link">
+                              {subItem.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                ) : (
+                  <a href={item.href} className="header-mobile-nav-link active">
+                    {item.label}
+                  </a>
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
+
+      {/* Search Modal Overlay */}
+      {searchOpen && (
+        <div className="header-search-overlay" onClick={() => setSearchOpen(false)}>
+          <div className="header-search-modal" onClick={(e) => e.stopPropagation()}>
+            <button 
+              className="header-search-close" 
+              onClick={() => setSearchOpen(false)}
+              aria-label="Fechar busca"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+            <form className="header-search-form" onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="O que você está procurando?"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="header-search-input"
+                autoFocus
+              />
+              <button type="submit" className="header-search-submit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="M21 21l-4.35-4.35"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

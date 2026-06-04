@@ -1,0 +1,236 @@
+/* ==========================================
+   TV SCHEDULE - Programação TV Cultura
+   ========================================== */
+
+.tv-schedule {
+  padding: 2rem 0;
+  background: var(--header-white);
+}
+
+.tv-schedule-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.tv-schedule-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tv-schedule-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--header-primary);
+}
+
+.tv-schedule-title svg {
+  color: var(--header-secondary);
+}
+
+.tv-schedule-live {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--header-text);
+  background: var(--header-light);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+}
+
+.live-indicator {
+  width: 8px;
+  height: 8px;
+  background: #FF4444;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.tv-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tv-schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--header-light);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.tv-schedule-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tv-schedule-item.current {
+  background: linear-gradient(135deg, rgba(45, 122, 191, 0.1) 0%, rgba(45, 122, 191, 0.05) 100%);
+  border-left-color: var(--header-secondary);
+  box-shadow: 0 2px 12px rgba(45, 122, 191, 0.15);
+}
+
+.tv-schedule-time {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--header-primary);
+  min-width: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.now-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--header-white);
+  background: var(--header-secondary);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tv-schedule-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.tv-schedule-category {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--header-white);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.tv-schedule-program {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--header-text);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tv-schedule-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--header-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.tv-schedule-see-all:hover {
+  color: var(--header-accent);
+  gap: 0.75rem;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+@media (max-width: 768px) {
+  .tv-schedule {
+    padding: 1.5rem 0;
+  }
+
+  .tv-schedule-container {
+    padding: 0 1rem;
+  }
+
+  .tv-schedule-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tv-schedule-title {
+    font-size: 1.1rem;
+  }
+
+  .tv-schedule-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .tv-schedule-item {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .tv-schedule-time {
+    min-width: 50px;
+    font-size: 0.8rem;
+  }
+
+  .tv-schedule-program {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tv-schedule-item {
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .tv-schedule-time {
+    min-width: 45px;
+    font-size: 0.75rem;
+  }
+
+  .tv-schedule-category {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.35rem;
+  }
+
+  .tv-schedule-program {
+    font-size: 0.75rem;
+  }
+
+  .now-badge {
+    font-size: 0.5rem;
+  }
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .tv-schedule-item,
+  .tv-schedule-see-all,
+  .live-indicator {
+    transition: none;
+    animation: none;
+  }
+}
+
+.tv-schedule-item:focus-within {
+  outline: 2px solid var(--header-secondary);
+  outline-offset: 2px;
+}
