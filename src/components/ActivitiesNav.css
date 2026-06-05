@@ -1,11 +1,11 @@
 /* ==========================================
-   ACTIVITIES NAVIGATION BAR
+   ACTIVITIES NAVIGATION BAR - Redesigned
    ========================================== */
 
 .activities-nav {
-  background: linear-gradient(135deg, var(--header-primary) 0%, #2a4a6c 100%);
-  padding: 1rem 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #1a3a5c;
+  padding: 0.75rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .activities-nav-container {
@@ -14,66 +14,58 @@
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
-.activities-nav-title {
+.activities-nav-label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--header-white);
-  font-weight: 600;
-  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   white-space: nowrap;
   flex-shrink: 0;
+  padding: 0.4rem 0.85rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
 }
 
-.activities-nav-title svg {
+.activities-nav-label svg {
   opacity: 0.9;
 }
 
-.activities-nav-wrapper {
-  flex: 1;
+.activities-nav-items {
   display: flex;
   align-items: center;
-  position: relative;
-}
-
-.activities-nav-scroll {
-  display: flex;
-  gap: 0.75rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 0.25rem 0;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  width: 100%;
-}
-
-.activities-nav-scroll::-webkit-scrollbar {
-  display: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex: 1;
 }
 
 .activities-nav-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
-  padding: 0.5rem 1rem 0.5rem 0.75rem;
-  color: var(--header-white);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
+  transition: all 0.25s ease;
   white-space: nowrap;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
 }
 
 .activities-nav-item:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -86,136 +78,88 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  flex-shrink: 0;
+  opacity: 0.9;
 }
 
 .activities-nav-item-icon svg {
-  stroke: var(--header-white);
+  stroke: currentColor;
 }
 
 .activities-nav-item-name {
-  flex: 1;
-}
-
-.activities-nav-item-count {
-  background: rgba(255, 255, 255, 0.25);
-  padding: 0.15rem 0.5rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.activities-nav-arrow {
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--header-primary);
-  z-index: 10;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.activities-nav-arrow:hover {
-  background: var(--header-white);
-  transform: scale(1.1);
-}
-
-.activities-nav-arrow:active {
-  transform: scale(0.95);
-}
-
-.activities-nav-arrow-left {
-  left: 0;
-}
-
-.activities-nav-arrow-right {
-  right: 0;
-}
-
-.activities-nav-loading {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
+  line-height: 1.2;
 }
 
 /* ==========================================
    RESPONSIVIDADE
    ========================================== */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .activities-nav-container {
-    flex-direction: column;
+    padding: 0 1rem;
     gap: 1rem;
-    padding: 0.75rem 1rem;
   }
 
-  .activities-nav-title {
-    width: 100%;
-    justify-content: center;
-    font-size: 0.9rem;
+  .activities-nav-label {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
   }
 
-  .activities-nav-wrapper {
-    width: 100%;
+  .activities-nav-items {
+    gap: 0.4rem;
   }
 
   .activities-nav-item {
-    padding: 0.4rem 0.8rem 0.4rem 0.6rem;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .activities-nav {
+    padding: 0.6rem 0;
   }
 
-  .activities-nav-item-icon {
-    width: 28px;
-    height: 28px;
+  .activities-nav-container {
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
-  .activities-nav-item-icon svg {
-    width: 16px;
-    height: 16px;
+  .activities-nav-label {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
   }
 
-  .activities-nav-arrow {
-    width: 30px;
-    height: 30px;
+  .activities-nav-items {
+    width: 100%;
+    justify-content: center;
+    gap: 0.35rem;
   }
 
-  .activities-nav-arrow svg {
-    width: 16px;
-    height: 16px;
+  .activities-nav-item {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.72rem;
   }
 }
 
 @media (max-width: 480px) {
-  .activities-nav-item {
-    padding: 0.35rem 0.6rem 0.35rem 0.5rem;
-    font-size: 0.75rem;
-    gap: 0.35rem;
+  .activities-nav-container {
+    padding: 0 0.75rem;
   }
 
-  .activities-nav-item-icon {
-    width: 24px;
-    height: 24px;
+  .activities-nav-items {
+    gap: 0.3rem;
+  }
+
+  .activities-nav-item {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.68rem;
+    gap: 0.3rem;
   }
 
   .activities-nav-item-icon svg {
     width: 14px;
     height: 14px;
-  }
-
-  .activities-nav-item-count {
-    font-size: 0.65rem;
-    padding: 0.1rem 0.35rem;
   }
 }
 
@@ -223,18 +167,12 @@
    ACESSIBILIDADE
    ========================================== */
 @media (prefers-reduced-motion: reduce) {
-  .activities-nav-scroll {
-    scroll-behavior: auto;
-  }
-
-  .activities-nav-item,
-  .activities-nav-arrow {
+  .activities-nav-item {
     transition: none;
   }
 }
 
-.activities-nav-item:focus,
-.activities-nav-arrow:focus {
-  outline: 2px solid var(--header-white);
+.activities-nav-item:focus {
+  outline: 2px solid #ffffff;
   outline-offset: 2px;
 }
