@@ -1,0 +1,355 @@
+/* ==========================================
+   CULTURE GALLERY - Galeria da Cultura
+   ========================================== */
+
+.culture-gallery {
+  padding: 3rem 0;
+  background: linear-gradient(180deg, var(--header-white) 0%, #f8f9fa 100%);
+}
+
+.culture-gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.culture-gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.culture-gallery-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--header-primary);
+}
+
+.culture-gallery-title svg {
+  color: var(--header-secondary);
+}
+
+.culture-gallery-count {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--header-text);
+  background: var(--header-light);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+}
+
+/* Mosaic Grid Layout */
+.gallery-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+/* Different sizes for mosaic effect */
+.gallery-item.small {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.gallery-item.medium {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.gallery-item.large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gallery-item.tall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.gallery-item.wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.gallery-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gallery-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-image-wrapper img {
+  transform: scale(1.1);
+}
+
+/* Overlay */
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay-content {
+  padding: 1.25rem;
+  width: 100%;
+}
+
+.gallery-category {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: white;
+  background: var(--header-secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-item-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.gallery-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  color: var(--header-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gallery-view-btn:hover {
+  background: var(--header-secondary);
+  color: white;
+}
+
+/* Footer */
+.gallery-footer {
+  text-align: center;
+}
+
+.gallery-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--header-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.gallery-see-all:hover {
+  color: var(--header-accent);
+  gap: 0.75rem;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+@media (max-width: 1024px) {
+  .gallery-mosaic {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .culture-gallery {
+    padding: 2rem 0;
+  }
+
+  .culture-gallery-container {
+    padding: 0 1rem;
+  }
+
+  .culture-gallery-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .culture-gallery-title {
+    font-size: 1.1rem;
+  }
+
+  .gallery-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 150px;
+    gap: 0.75rem;
+  }
+
+  .gallery-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-item.tall {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .gallery-item.wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .gallery-overlay-content {
+    padding: 1rem;
+  }
+
+  .gallery-item-title {
+    font-size: 0.9rem;
+  }
+
+  .gallery-view-btn {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .culture-gallery-container {
+    padding: 0 0.75rem;
+  }
+
+  .gallery-mosaic {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+    gap: 0.5rem;
+  }
+
+  .gallery-item,
+  .gallery-item.small,
+  .gallery-item.medium,
+  .gallery-item.large,
+  .gallery-item.tall,
+  .gallery-item.wide {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .gallery-overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+
+  .gallery-item-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .gallery-category {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+  }
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item,
+  .gallery-image-wrapper img,
+  .gallery-overlay,
+  .gallery-view-btn,
+  .gallery-see-all {
+    transition: none;
+  }
+
+  .gallery-item:hover {
+    transform: none;
+  }
+
+  .gallery-item:hover .gallery-image-wrapper img {
+    transform: none;
+  }
+}
+
+.gallery-item:focus-within {
+  outline: 2px solid var(--header-secondary);
+  outline-offset: 2px;
+}
+
+/* Loading animation */
+.gallery-image-wrapper img {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.gallery-image-wrapper img[src*="picsum.photos"] {
+  animation: none;
+  background: #f0f0f0;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

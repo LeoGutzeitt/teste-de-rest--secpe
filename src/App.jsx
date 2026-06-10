@@ -2,6 +2,8 @@ import Header from './components/Header'
 import ActivitiesNav from './components/ActivitiesNav'
 import NewsBlock from './components/NewsBlock'
 import TVSchedule from './components/TVSchedule'
+import CultureEvents from './components/CultureEvents'
+import CultureGallery from './components/CultureGallery'
 import Footer from './components/Footer'
 import PostList from './components/PostList'
 import CategoryList from './components/CategoryList'
@@ -15,6 +17,8 @@ function App() {
       <ActivitiesNav />
       <NewsBlock />
       <TVSchedule />
+      <CultureEvents />
+      <CultureGallery />
 
       <main className="app-main">
         <SearchBar />
