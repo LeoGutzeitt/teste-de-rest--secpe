@@ -1,10 +1,11 @@
-import { useCategories } from '../hooks/useWordPress.js';
+import { Link } from 'react-router-dom'
+import { useCategories } from '../hooks/useWordPress.js'
 
 function CategoryList() {
-  const { data: categories, loading, error } = useCategories();
+  const { data: categories, loading, error } = useCategories()
 
-  if (loading) return <div className="loading">Carregando categorias...</div>;
-  if (error) return <div className="error">Erro: {error}</div>;
+  if (loading) return <div className="loading">Carregando categorias...</div>
+  if (error) return <div className="error">Erro: {error}</div>
 
   return (
     <section className="category-list">
@@ -16,8 +17,10 @@ function CategoryList() {
         <ul className="categories-grid">
           {categories.map(category => (
             <li key={category.id} className="category-item">
-              <span className="category-name">{category.name}</span>
-              <span className="category-count">({category.count} posts)</span>
+              <Link to={`/categoria/${category.slug}`} className="category-link">
+                <span className="category-name">{category.name}</span>
+                <span className="category-count">({category.count} posts)</span>
+              </Link>
               {category.description && (
                 <p className="category-description">
                   {category.description}
@@ -28,7 +31,7 @@ function CategoryList() {
         </ul>
       )}
     </section>
-  );
+  )
 }
 
-export default CategoryList;
+export default CategoryList

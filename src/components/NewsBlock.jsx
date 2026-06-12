@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { usePosts } from "../hooks/useWordPress";
 import "./NewsBlock.css";
 
@@ -73,7 +74,7 @@ function NewsBlock() {
     categoryNames: post.categoryNames || ["Geral"],
     featuredImage: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
                    `https://images.unsplash.com/photo-${1500000000000 + post.id}?w=800&h=400&fit=crop`,
-    link: `#noticia/${post.id}`
+    link: `/noticia/${post.slug}`
   })) : fallbackNews;
 
   useEffect(() => {
@@ -116,12 +117,12 @@ function NewsBlock() {
             </svg>
             <span>Últimas Notícias</span>
           </h2>
-          <a href="#todas-noticias" className="news-block-see-all">
+          <Link to="/noticias" className="news-block-see-all">
             Ver todas
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </a>
+          </Link>
         </div>
 
         {loading ? (
@@ -132,7 +133,7 @@ function NewsBlock() {
         ) : (
           <div className="news-block-content">
             <div className={`news-block-main ${isTransitioning ? 'transitioning' : ''}`}>
-              <a href={currentNews.link} className="news-block-main-link">
+              <Link to={currentNews.link} className="news-block-main-link">
                 <div className="news-block-main-image">
                   <img 
                     src={currentNews.featuredImage} 
@@ -150,7 +151,7 @@ function NewsBlock() {
                   </h3>
                   <p className="news-block-main-excerpt" dangerouslySetInnerHTML={{ __html: currentNews.excerpt.rendered }} />
                 </div>
-              </a>
+              </Link>
             </div>
 
             <div className="news-block-thumbnails">

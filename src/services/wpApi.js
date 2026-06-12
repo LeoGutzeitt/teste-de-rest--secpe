@@ -12,7 +12,8 @@ import { config } from '../config.js';
  * @returns {Promise<Object>} API response data
  */
 async function fetchFromAPI(endpoint, params = {}) {
-  const url = new URL(endpoint, config.wpApiUrl);
+  const baseUrl = config.wpApiUrl.endsWith('/') ? config.wpApiUrl : config.wpApiUrl + '/';
+  const url = new URL(endpoint, baseUrl);
   
   // Add query parameters
   Object.keys(params).forEach(key => {

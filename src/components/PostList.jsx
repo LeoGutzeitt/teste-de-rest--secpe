@@ -1,10 +1,11 @@
-import { usePosts } from '../hooks/useWordPress.js';
+import { Link } from 'react-router-dom'
+import { usePosts } from '../hooks/useWordPress.js'
 
-function PostList() {
-  const { data: posts, loading, error, refetch } = usePosts({ per_page: 10 });
+function PostList({ per_page = 10 }) {
+  const { data: posts, loading, error, refetch } = usePosts({ per_page, _embed: true })
 
-  if (loading) return <div className="loading">Carregando posts...</div>;
-  if (error) return <div className="error">Erro: {error}</div>;
+  if (loading) return <div className="loading">Carregando posts...</div>
+  if (error) return <div className="error">Erro: {error}</div>
 
   return (
     <section className="post-list">
@@ -41,20 +42,18 @@ function PostList() {
                   {new Date(post.date).toLocaleDateString('pt-BR')}
                 </span>
               </div>
-              <a 
-                href={post.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <Link 
+                to={`/noticia/${post.slug}`} 
                 className="read-more"
               >
                 Ler mais →
-              </a>
+              </Link>
             </article>
           ))}
         </div>
       )}
     </section>
-  );
+  )
 }
 
-export default PostList;
+export default PostList
